@@ -1,0 +1,18 @@
+{
+  "chineseDisplayEntryCount": 768,
+  "compilerExtractedKeyCount": 646,
+  "compilerKeysWithChineseResources": 637,
+  "intentionallyPreservedCompilerKeys": [
+    " %@",
+    "%@ · %@",
+    "1 GB",
+    "100 MB",
+    "250 MB",
+    "5 MB",
+    "50 MB",
+    "500 MB",
+    "Safari"
+  ],
+  "untranslatedDisplayCompilerKeys": {},
+  "scope": "Main app compiler-emitted Localizable keys, supplemented by explicit dynamic label and native getter tests. User names, file paths, identifiers, commands, and system/library diagnostics retain their original values."
+}

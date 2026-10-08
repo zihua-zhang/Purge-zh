@@ -17,7 +17,7 @@ final class CleanupHistoryStore: ObservableObject {
 
     private static func applicationSupportFileURL() -> URL {
         let baseDir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?
-            .appendingPathComponent("io.getpurge.app", isDirectory: true)
+            .appendingPathComponent(PurgeLocalBuild.supportComponent, isDirectory: true)
             ?? FileManager.default.temporaryDirectory
         if !FileManager.default.fileExists(atPath: baseDir.path) {
             try? FileManager.default.createDirectory(at: baseDir, withIntermediateDirectories: true)

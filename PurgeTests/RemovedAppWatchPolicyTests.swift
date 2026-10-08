@@ -314,9 +314,14 @@ struct RemovedAppWatchPolicyTests {
     /// run from Xcode must act on them, or trying the feature from Xcode silently
     /// shows nothing (it did: a Debug build dropped a real removal record).
     @Test
-    func onlyTheTestHostLeavesTheLiveAgentAlone() {
-        #expect(RemovedAppMonitor.managesLiveAgent(environment: [:]))
-        #expect(RemovedAppMonitor.managesLiveAgent(environment: ["HOME": "/Users/x"]))
+    func testHostsAndLocalBuildsLeaveTheLiveAgentAlone() {
+        if PurgeLocalBuild.isEnabled {
+            #expect(!RemovedAppMonitor.managesLiveAgent(environment: [:]))
+            #expect(!RemovedAppMonitor.managesLiveAgent(environment: ["HOME": "/Users/x"]))
+        } else {
+            #expect(RemovedAppMonitor.managesLiveAgent(environment: [:]))
+            #expect(RemovedAppMonitor.managesLiveAgent(environment: ["HOME": "/Users/x"]))
+        }
         #expect(!RemovedAppMonitor.managesLiveAgent(environment: ["XCTestConfigurationFilePath": "/tmp/x.xctestconfiguration"]))
         #expect(!RemovedAppMonitor.managesLiveAgent(environment: ["XCTestSessionIdentifier": "ABC"]))
     }

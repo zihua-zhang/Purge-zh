@@ -113,6 +113,7 @@ final class PurgeStore: ObservableObject {
         case about = "About"
 
         var id: String { rawValue }
+        var displayName: String { NSLocalizedString(rawValue, comment: "Sidebar tab title") }
         var icon: String {
             switch self {
             case .overview: return "square.grid.2x2"
@@ -4253,7 +4254,7 @@ final class PurgeStore: ObservableObject {
             level: level,
             headline: item.safetyInfo.headline,
             explanation: manualOverrideExplanation(level: level),
-            recoverySteps: "",
+            recoverySteps: String(localized: ""),
             reinstallCommand: item.safetyInfo.reinstallCommand
         )
         withAnimation {
@@ -4275,7 +4276,7 @@ final class PurgeStore: ObservableObject {
             level: level,
             headline: tool.safetyInfo.headline,
             explanation: manualOverrideExplanation(level: level),
-            recoverySteps: "",
+            recoverySteps: String(localized: ""),
             reinstallCommand: tool.safetyInfo.reinstallCommand
         )
         withAnimation {
@@ -4302,7 +4303,7 @@ final class PurgeStore: ObservableObject {
             level: level,
             headline: artifact.safetyInfo.headline,
             explanation: manualOverrideExplanation(level: level),
-            recoverySteps: "",
+            recoverySteps: String(localized: ""),
             reinstallCommand: artifact.safetyInfo.reinstallCommand
         )
         var groups = projectGroups

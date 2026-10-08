@@ -19,26 +19,20 @@ extension SafetyInfo {
                 level: info.level,
                 headline: info.headline,
                 explanation: info.explanation,
-                recoverySteps: "",
+                recoverySteps: String(localized: ""),
                 reinstallCommand: reinstallCommand
             )
         }
 
         if let record = ExplanationDatabase.matchBundledDatabase(folderName: key) {
-            return SafetyInfo(
-                level: record.safetyLevel,
-                headline: record.displayName,
-                explanation: record.explanation,
-                recoverySteps: "",
-                reinstallCommand: reinstallCommand
-            )
+            return ExplanationDatabase.safetyInfo(from: record, reinstallCommand: reinstallCommand)
         }
         let unknown = ExplanationDatabase.safetyInfoForUnknownBundledLookup(friendlyFallback: fallback)
         return SafetyInfo(
             level: unknown.level,
             headline: unknown.headline,
             explanation: unknown.explanation,
-            recoverySteps: "",
+            recoverySteps: String(localized: ""),
             reinstallCommand: reinstallCommand
         )
     }

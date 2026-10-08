@@ -28,13 +28,14 @@ final class PrivilegedHelperManager {
         case failed(String)
     }
 
-    var status: SMAppService.Status { service.status }
+    var status: SMAppService.Status { PurgeLocalBuild.isEnabled ? .notRegistered : service.status }
 
     /// Registers the daemon if it isn't already. A fresh registration lands in
     /// `.requiresApproval` until the user flips it on in System Settings, so this
     /// reports which of the two happened rather than pretending it is live.
     @discardableResult
     func register() -> Registration {
+        guard !PurgeLocalBuild.isEnabled else { return .failed("本地测试版不注册原版的后台助手") }
         let statusBeforeRegistration = service.status
         do {
             try service.register()
@@ -55,6 +56,7 @@ final class PrivilegedHelperManager {
 
     @discardableResult
     func unregister() async -> Bool {
+        guard !PurgeLocalBuild.isEnabled else { return true }
         do {
             try await service.unregister()
             return true
@@ -93,6 +95,7 @@ final class PrivilegedHelperManager {
     /// when the helper is not enabled or the connection fails, so the caller knows
     /// escalation did not happen. Never throws: escalation is best-effort.
     func moveToTrash(_ urls: [URL]) async -> PrivilegedMoveResult? {
+        guard !PurgeLocalBuild.isEnabled else { return nil }
         // A helper can be approved after app launch. Check again here so an old,
         // newly-approved copy is replaced before it receives the current protocol.
         // A definite, un-fixable version mismatch reports "not ready" rather than
@@ -176,6 +179,7 @@ final class PrivilegedHelperManager {
     /// stale binary to behave like the current one.
     @discardableResult
     func reconcileVersion() async -> Bool {
+        guard !PurgeLocalBuild.isEnabled else { return false }
         guard service.status == .enabled else { return false }
         guard let installed = await installedHelperVersion() else {
             // SMAppService can report `.enabled` even though launchd no longer has the

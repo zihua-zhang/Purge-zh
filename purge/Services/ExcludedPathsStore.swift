@@ -22,7 +22,7 @@ enum ExcludedPathsStore {
 
     nonisolated private static func supportURL() -> URL {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        return base.appendingPathComponent("io.getpurge.app", isDirectory: true)
+        return base.appendingPathComponent(PurgeLocalBuild.supportComponent, isDirectory: true)
     }
 
     nonisolated static func fileURL() -> URL {

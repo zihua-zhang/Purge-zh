@@ -21,3 +21,6 @@ RELEASE_NOTES_*.md
 
 # Local Command Code tooling state (not part of the app)
 .commandcode/
+
+/purge-local.xcodeproj/
+localization-tests/__pycache__/

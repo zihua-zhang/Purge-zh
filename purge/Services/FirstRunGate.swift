@@ -107,7 +107,7 @@ enum FirstRunGate {
 
     static func defaultSupportDirectory() -> URL? {
         FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?
-            .appendingPathComponent("io.getpurge.app", isDirectory: true)
+            .appendingPathComponent(PurgeLocalBuild.supportComponent, isDirectory: true)
     }
 
     static func currentAppVersion() -> String {

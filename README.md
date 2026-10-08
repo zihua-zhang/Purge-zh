@@ -1,3 +1,23 @@
+# Purge 简体中文维护版
+
+基于 [jithin-sabu/purge-app](https://github.com/jithin-sabu/purge-app)，保留原作者署名、MIT 许可证与清理安全规则，持续跟进官方更新并维护汉化。此仓库为独立汉化版，不是官方发布。
+
+[下载中文版安装包](https://github.com/slegan56826-code/Purge-zh/releases) · [官方上游](https://github.com/jithin-sabu/purge-app)
+
+概览、侧栏、菜单、扫描与卸载审阅、设置及内置的 282 条缓存说明已汉化。原始匹配标识、路径、命令及风险分类保持不变；删除项目依原有规则移到废纸篓，并仍需用户确认。
+
+当前面向 Apple Silicon Mac 构建，在 macOS 27 本机验证。安装到应用程序目录后，为“Purge 中文版”授予完全磁盘访问即可扫描大文件和应用残留。安装包为本地签名，不含官方 Developer ID 签名和 Apple 公证；无需关闭系统安全保护。
+
+中文版使用独立数据目录，关闭会覆盖汉化的官方英文自动更新，以及官方后台监测／管理员辅助服务注册。普通清理与审阅功能保留。后续中文更新发布在本仓库 Releases，本聊天已安排每日检查官方新版本。
+
+构建：完整 Xcode 环境中运行 `scripts/build-zh.sh`。资源与元数据检查位于 `localization-tests`。原生测试中，目录并发测试与其余测试分批运行，避免上游在全套并发压力下的线程饥饿；不改动扫描器和原有断言。
+
+维护要求：保持简体中文，新增文案补译；不修改清理允许列表、用户文件路径及风险语义。通过构建、测试和安装包验证后再发布，不直接安装官方英文包覆盖中文版。
+
+---
+
+## 上游项目说明（原文，签名、公证及更新说明针对官方版）
+
 <div align="center">
 
   <img src="Assets/purge-iOS-Default-1024x1024@1x.png" width="128" alt="Purge app icon" />

@@ -25,6 +25,7 @@ final class PurgeUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
 
     override init() {
         super.init()
+        guard !PurgeLocalBuild.isEnabled else { return }
         controller = SPUStandardUpdaterController(
             startingUpdater: true,
             updaterDelegate: self,
@@ -36,11 +37,13 @@ final class PurgeUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
     }
 
     func setAutomaticallyChecksForUpdates(_ enabled: Bool) {
+        guard !PurgeLocalBuild.isEnabled else { return }
         controller.updater.automaticallyChecksForUpdates = enabled
         automaticallyChecksForUpdates = enabled
     }
 
     func checkForUpdates() {
+        guard !PurgeLocalBuild.isEnabled else { return }
         guard controller.updater.canCheckForUpdates else { return }
         controller.updater.checkForUpdates()
     }

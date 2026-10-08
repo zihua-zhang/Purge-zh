@@ -26,8 +26,13 @@ nonisolated enum RemovedAppHandoff {
     }
 
     /// Tests point this at a temporary directory. The app and the watcher use the default.
+    #if PURGE_LOCAL_BUILD
+    static var root: URL = FileManager.default.homeDirectoryForCurrentUser
+        .appendingPathComponent("Library/Application Support/Purge-Chinese-Test", isDirectory: true)
+#else
     static var root: URL = FileManager.default.homeDirectoryForCurrentUser
         .appendingPathComponent("Library/Application Support/Purge", isDirectory: true)
+#endif
 
     static let launchURL = URL(string: "purge://removed-apps")!
     static let agentPlistName = "io.getpurge.watch.plist"
