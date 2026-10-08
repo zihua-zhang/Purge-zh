@@ -3,7 +3,7 @@
   "baseline_commit": "d7269564e807befd02e825d77dc9c94d402d3cb5",
   "baseline_release": "v1.8.2",
   "language": "zh-Hans",
-  "maintenance_repository": "slegan56826-code/Purge-zh",
+  "maintenance_repository": "zihua-zhang/Purge-zh",
   "bundle_identifier": "io.getpurge.app.zhlocal",
   "automatic_english_overwrite": false,
   "modified_date": "2026-10-08",
